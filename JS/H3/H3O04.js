@@ -54,17 +54,24 @@ class Galgje {
 
   verwerkInvoer() {
     // verwerk de invoer
-
-    this.pogingen.push(key);
-    var letterZitInWoord = false;
-    for (var l = 0;l < this.letters.length;l++) {
-      if (this.letters[l] == key) {
-        letterZitInWoord = true;
-        this.geraden[l] = true;
+    var letterIsAlGeprobeerd = false;
+    for (var l = 0;l < this.pogingen.length;l++) {
+      if (this.pogingen[l] == key) {
+        letterIsAlGeprobeerd = true;
       }
     }
-    if (!letterZitInWoord) {
-      this.speler.resterendeBeurten--;
+    if (!letterIsAlGeprobeerd) {
+      this.pogingen.push(key);
+      var letterZitInWoord = false;
+      for (var l = 0;l < this.letters.length;l++) {
+        if (this.letters[l] == key) {
+          letterZitInWoord = true;
+          this.geraden[l] = true;
+        }
+      }
+      if (!letterZitInWoord) {
+        this.speler.resterendeBeurten--;
+      }
     }
   }
 
@@ -99,6 +106,14 @@ class Galgje {
     }
     tekst=tekst.substr(0,tekst.length-1);
     text(tekst,12,0,canvas.width,70);
+    var geprobeerd = "";
+    for (var l = 0;l < this.pogingen.length;l++) {
+      
+      geprobeerd += this.pogingen[l]+" ";
+    }
+    textSize(30);
+    text(geprobeerd,350,388);
+    textSize(40);
     image(this.beeldjes[this.maximaalAantalBeurten - this.speler.resterendeBeurten],(canvas.width-300) / 2,75,300,300);
     textSize(80);
     if (this.speler.resterendeBeurten == 0) {

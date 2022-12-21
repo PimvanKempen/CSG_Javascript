@@ -6,6 +6,7 @@ function setup() {
   noStroke();
   //noLoop();
   background('lavender');  
+  frameRate(1000);
 }
 
 function draw() {
@@ -13,6 +14,12 @@ function draw() {
   rect(0,0,width,30);
   fill('black');  
   text("mouseX:" + round(mouseX) + " mouseY:"+round(mouseY),10,20);
-  fill('indianred');
-  ellipse(mouseX,mouseY,10);
+  if (keyIsDown(32)) {
+    fill('lavender');
+    ellipse(mouseX,mouseY,20);
+  }
+  if (mouseIsPressed) {
+    fill('indianred');
+    ellipse(mouseX,mouseY,10);
+  }
 }

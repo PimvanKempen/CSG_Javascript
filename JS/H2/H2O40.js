@@ -55,8 +55,12 @@ class Jos {
     }
   }
   
-  staatOp(bommenLijst) {
-
+  staatOp() {
+    for (var n = 0; n < bommenArray.length;n++) {
+      if (bommenArray[n].x == this.x && bommenArray[n].y == this.y) {
+        this.staOpBom = true;
+      }
+    }
     return this.staOpBom;
   }  
   
@@ -66,7 +70,7 @@ class Jos {
 }
 
 function preload() {
-  brug = loadImage("images/backgrounds/dame_op_brug_1800.jpg");
+  brug = loadImage("images/piano.jpg");
   bomPlaatje = loadImage("images/sprites/bom_100px.png");
 }
 
@@ -79,9 +83,14 @@ function setup() {
   textFont("Verdana");
   textSize(90);
   
-  raster = new Raster(6,9);
+  raster = new Raster(12,18);
   
   raster.berekenCelGrootte();
+
+  for (var b = 0; b < 60; b++) {
+    bommenArray.push(new Bom());
+  }
+
   bom1 = new Bom();
   
   eve = new Jos();
@@ -102,8 +111,10 @@ function setup() {
 
 function draw() {
   background(brug);
-  raster.teken();
-  bom1.toon();
+  //raster.teken();
+  for (n=0;n<bommenArray.length;n++) {
+    bommenArray[n].toon();
+  }
 
   if (eve.aanDeBeurt) {
     eve.beweeg();

@@ -18,6 +18,13 @@ function draw() {
   background('grey');
   image(strand,strandX,0);
   image(strand,strandX + width,0);
+  image(strand,strandX - width,0);
+  if (strandX <= -strand.width) {
+    strandX = 0;
+  }
+  if (strandX >= strand.width) {
+    strandX = 0;
+  }
 
   if (keyIsDown(RIGHT_ARROW)) {
     strandX++;

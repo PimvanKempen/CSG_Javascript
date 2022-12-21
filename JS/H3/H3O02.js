@@ -47,7 +47,7 @@ class Galgje {
     // mag deze invoer?
 
     if (this.speler.resterendeBeurten > 0 && !this.woordIsGeraden()) {
-      this.verwerkInvoer();
+      this.verwerkInvoer();0
       this.teken();
     }
   }

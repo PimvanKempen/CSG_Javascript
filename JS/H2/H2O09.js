@@ -1,6 +1,9 @@
 var foto;
 var pixelKleur;
 var rood,groen,blauw;
+var aantalKolommenRaster = 18;
+var aantalRijenRaster;
+var celGrootte;
 
 function preload() {
   foto = loadImage("images/brieck_klein.jpg");
@@ -8,6 +11,7 @@ function preload() {
 
 function setup() {
   canvas = createCanvas(450,450);
+
   canvas.parent('processing');
   textFont("Georgia");
   textSize(18);
@@ -16,14 +20,26 @@ function setup() {
 }
 
 function draw() {
+  if (keyIsDown(RIGHT_ARROW)) {
+    aantalKolommenRaster++;
+  }
+  if (keyIsDown(LEFT_ARROW)) {
+    aantalKolommenRaster--;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    aantalRijenRaster++;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    aantalRijenRaster--;
+  }
+  celGrootte = width / aantalKolommenRaster;
+  aantalRijenRaster = aantalKolommenRaster;
   background(foto);
-  pixelKleur = foto.get(mouseX,mouseY);
-  rood = pixelKleur[0];
-  groen = pixelKleur[1];
-  blauw = pixelKleur[2];
-  
-  fill(pixelKleur);
-  rect(0,410,450,40);
-  fill('white');  
-  text("RGB-waarden: rood = " + rood + " groen = " + groen+" blauw = " + blauw,10,435);
+  for (var rij = 0;rij < aantalRijenRaster;rij++) {
+    for (var kolom = 0;kolom < aantalKolommenRaster;kolom++) {
+      pixelKleur = foto.get(kolom*celGrootte,rij*celGrootte);
+      fill(pixelKleur);
+      rect(kolom*celGrootte,rij*celGrootte,celGrootte,celGrootte);
+    }
+  }
 }

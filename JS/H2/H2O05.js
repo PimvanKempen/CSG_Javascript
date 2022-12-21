@@ -18,21 +18,34 @@ function setup() {
 }
 
 function draw() {
-  
+  image(brug,0,0,width,height);
+  if (keyIsDown(RIGHT_ARROW)) {
+    aantalKolommenRaster++;
+  }
+  if (keyIsDown(LEFT_ARROW)) {
+    aantalKolommenRaster--;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    aantalRijenRaster++;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    aantalRijenRaster--;
+  }
+  celGrootte = width / aantalKolommenRaster;
   tekenRaster();
+  var xJos = 4*celGrootte;
+  var yJos = 3*celGrootte;
+  image(spriteJos,xJos,yJos);
 }
 
 function tekenRaster() {
   push();
   noFill();
   stroke('grey');
-  /*
-  Maak hieronder een dubbele herhaling om een raster te maken.
-  HINT: je kunt terugkijken naar het raster dat je in H1 hebt gemaakt.
-  Maak gebruik van de variabelen die bovenaan zijn gedeclareerd.
-  */
-  
-      rect(4*celGrootte,2*celGrootte,celGrootte,celGrootte);
-
+  for (var n = 1; n <= aantalKolommenRaster ; n++) {
+    for (var i = 1; i <= aantalRijenRaster ; i++) {
+      rect((n-1)*celGrootte,(i-1)*celGrootte,celGrootte,celGrootte);
+    }
+  }
   pop();
 }

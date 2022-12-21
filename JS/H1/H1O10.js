@@ -12,5 +12,7 @@ function draw() {
   fill('black');
   text("mouseX:" + round(mouseX) + " mouseY:"+round(mouseY),10,20);
   fill('indianred');
-  ellipse(width/2,height/2,10);
+  if (mouseIsPressed) {
+    ellipse(width/2,height/2,10);
+  }
 }

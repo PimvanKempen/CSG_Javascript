@@ -195,7 +195,7 @@ function setup() {
   textAlign(CENTER,CENTER);  
   frameRate(50);
   spel = new Typerend(gameSettings);
-  achtergrondmuziek.loop();
+  //achtergrondmuziek.loop();
 }
 
 function draw() {
